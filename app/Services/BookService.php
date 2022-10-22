@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Events\BookCreated;
 use App\Models\Book;
 use App\Repositories\BookRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Ramsey\Uuid\Type\Integer;
+use Log;
 
 class BookService
 {
@@ -16,13 +17,22 @@ class BookService
         $this->bookRepository = $bookRepository;
     }
 
-    public function index(): Collection
+    public function getAll(): Collection
     {
         return $this->bookRepository->all();
     }
 
-    public function getById(Integer $id): Book
+    public function getById(int $id): Book
     {
         return $this->bookRepository->findById($id);
+    }
+
+    public function create(array $attributes): Book
+    {
+        $newBook = $this->bookRepository->create($attributes);
+
+        BookCreated::dispatch($newBook);
+
+        return $newBook;
     }
 }

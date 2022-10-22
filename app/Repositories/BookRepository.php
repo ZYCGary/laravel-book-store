@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Interfaces\BookInterface;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\Collection;
-use Ramsey\Uuid\Type\Integer;
 
 class BookRepository implements BookInterface
 {
@@ -14,8 +13,13 @@ class BookRepository implements BookInterface
         return Book::all();
     }
 
-    public function findById(Integer $id): Book
+    public function findById(int $id): Book
     {
         return Book::findOrFail($id);
+    }
+
+    public function create(array $attributes): Book
+    {
+        return Book::create($attributes);
     }
 }

@@ -16,7 +16,9 @@ Before install this project, please make sure **Composer** is installed at the l
 - Run ```./vendor/bin/sail up -d``` to build and start Docker container
 - Run ```./vendor/bin/sail shell``` to connect to the container
 - Run ```composer install``` again to install dependencies under container environment
+- Run ```npm install```
 - Run ```php artisan migrate:refresh --seed``` to initialise database
+- Run ```npm run dev```
 - Open application in browser via [http://localhost](http://localhost)
 
 ## Key Concepts

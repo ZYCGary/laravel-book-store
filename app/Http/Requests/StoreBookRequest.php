@@ -2,29 +2,26 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Author;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreBookRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string'],
+            'author_id' => ['required', 'numeric', Rule::exists('authors', 'id')],
+            'description' => ['string', 'nullable'],
+            'file_url' => ['required', 'string'],
+            'category' => ['required', 'string', Rule::in(['Fiction', 'Non-fiction', 'Other'])],
+            'isbn' => ['required', 'string', Rule::unique('books')]
         ];
     }
 }
