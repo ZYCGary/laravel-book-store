@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('books.store') }}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -45,8 +45,8 @@
         </div>
 
         <div>
-            <label for="create_form_file_url">File URL: </label>
-            <input type="text" id="create_form_file_url" name="file_url">
+            <label for="create_form_file">File: </label>
+            <input type="file" id="create_form_file" name="file">
         </div>
 
         <div>
@@ -55,7 +55,7 @@
         </div>
 
         <div>
-            <button type="submit">Create</button>
+            <button type="submit" class="btn-primary">Create</button>
         </div>
     </form>
 @endsection

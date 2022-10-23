@@ -14,11 +14,6 @@ class BookRepository implements BookInterface
         return Book::all();
     }
 
-    public function findById(int $id): Book
-    {
-        return Book::findOrFail($id);
-    }
-
     public function create(array $attributes): Book
     {
         return Book::create($attributes);

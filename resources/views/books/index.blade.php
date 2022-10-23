@@ -3,6 +3,9 @@
 @section('content')
     <div>
         <h1 class="heading">Book List</h1>
+
+        <a href="{{ route('books.create') }}" class="btn-primary mb-2">New Book</a>
+
         <ul>
             @foreach($books as $book)
                 <li class="border p-2">

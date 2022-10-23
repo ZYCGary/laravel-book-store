@@ -36,7 +36,7 @@ class BookController extends Controller
 
     public function store(StoreBookRequest $request): RedirectResponse
     {
-        $book = $this->bookService->create($request->all());
+        $book = $this->bookService->store($request);
 
         return redirect()->route('books.show', compact('book'));
     }

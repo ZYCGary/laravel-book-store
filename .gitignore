@@ -247,6 +247,7 @@ $RECYCLE.BIN/
 /public/hot
 /public/storage
 /storage/*.key
+/public/uploads
 /vendor
 .env
 .env.backup
