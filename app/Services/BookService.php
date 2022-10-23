@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Events\BookCreated;
 use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Repositories\BookRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -40,7 +41,7 @@ class BookService
         if ($file) {
             // Store upload file under the public path: /uploads.
             $filename = time() . '.pdf';
-            $request->file('file')?->move(public_path('uploads'), $filename);
+            $file->move(public_path('uploads'), $filename);
 
             // Store the book information into database.
             $attributes = $request->all();
@@ -55,8 +56,20 @@ class BookService
         return null;
     }
 
-    public function update(Book $book, array $attributes): void
+    public function update(Book $book, UpdateBookRequest $request): void
     {
+        $file = $request->file('file');
+        $attributes = $request->all();
+
+        if ($file) {
+            // Store upload file under the public path: /uploads.
+            $filename = time() . '.pdf';
+            $file->move(public_path('uploads'), $filename);
+
+            // Store the book information into database.
+            $attributes['file_url'] = "/uploads/$filename";
+        }
+
         $this->bookRepository->update($book, $attributes);
     }
 }

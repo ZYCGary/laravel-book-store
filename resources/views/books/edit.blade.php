@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('books.update', ['book' => $book]) }}" method="POST">
+    <form action="{{ route('books.update', ['book' => $book]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -48,8 +48,8 @@
         </div>
 
         <div>
-            <label for="create_form_file_url">File URL: </label>
-            <input type="text" id="create_form_file_url" name="file_url" value="{{ $book->file_url }}">
+            <label for="create_form_file">File: </label>
+            <input type="file" id="create_form_file" name="file">
         </div>
 
         <div>

@@ -55,7 +55,7 @@ class BookController extends Controller
 
     public function update(UpdateBookRequest $request, Book $book): RedirectResponse
     {
-        $this->bookService->update($book, $request->all());
+        $this->bookService->update($book, $request);
 
         return redirect()->route('books.show', compact('book'));
     }
