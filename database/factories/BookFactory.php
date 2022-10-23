@@ -18,7 +18,7 @@ class BookFactory extends Factory
             'author_id' => Author::all()->random()->id,
             'title' => fake()->sentence(3),
             'description' => fake()->realText,
-            'file_url' => '/library/fake-book.pdf',
+            'file_url' => config('app.url'). "/test-file.pdf",
             'category' => fake()->randomElement(['Fiction', 'Non-fiction', 'Other']),
             'isbn' => fake()->numerify('###-#-#####-###-#'),
         ];
