@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Book Details</h1>
+    <h1 class="heading">Book Details</h1>
+
+    <a href="{{ route('books.edit', $book) }}">
+        <button class="btn-primary">Update</button>
+    </a>
 
     <ul>
         <li>Title: {{ $book->title }}</li>

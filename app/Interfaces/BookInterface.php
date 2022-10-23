@@ -12,4 +12,6 @@ interface BookInterface
     public function findById(int $id): Book;
 
     public function create(array $attributes): Book;
+
+    public function update(Book $book, array $attributes): void;
 }

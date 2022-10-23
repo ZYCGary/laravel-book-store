@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create A New Book</h1>
+    <h1 class="heading">Create A New Book</h1>
 
     @if ($errors->any())
         <div class="text-red-600">
@@ -41,7 +41,7 @@
 
         <div>
             <label for="create_form_description">Description: </label>
-            <input type="text" id="create_form_description" name="description">
+            <textarea id="create_form_description" name="description" class="w-80"></textarea>
         </div>
 
         <div>

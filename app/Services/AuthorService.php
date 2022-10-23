@@ -14,6 +14,11 @@ class AuthorService
         $this->authorRepository = $authorRepository;
     }
 
+    /**
+     * Get the collection of all authors.
+     *
+     * @return Collection
+     */
     public function getAll(): Collection
     {
         return $this->authorRepository->all();
