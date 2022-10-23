@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Events\BookCreated;
+use App\Handlers\FileUploadHandler;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
@@ -39,13 +40,11 @@ class BookService
         $file = $request->file('file');
 
         if ($file) {
-            // Store upload file under the public path: /uploads.
-            $filename = time() . '.pdf';
-            $file->move(public_path('uploads'), $filename);
-
-            // Store the book information into database.
             $attributes = $request->all();
-            $attributes['file_url'] = "/uploads/$filename";
+
+            // Store upload file under the public path: /uploads.
+            $attributes['file_url'] = FileUploadHandler::upload($file);
+
             $newBook = $this->bookRepository->create($attributes);
 
             BookCreated::dispatch($newBook);
@@ -63,13 +62,10 @@ class BookService
 
         if ($file) {
             // Store upload file under the public path: /uploads.
-            $filename = time() . '.pdf';
-            $file->move(public_path('uploads'), $filename);
-
-            // Store the book information into database.
-            $attributes['file_url'] = "/uploads/$filename";
+            $attributes['file_url'] = FileUploadHandler::upload($file);
         }
 
+        // Update book information.
         $this->bookRepository->update($book, $attributes);
     }
 }

@@ -38,7 +38,9 @@ class BookController extends Controller
     {
         $book = $this->bookService->store($request);
 
-        return redirect()->route('books.show', compact('book'));
+        return $book
+            ? redirect()->route('books.show', compact('book'))
+            : redirect()->back();
     }
 
     public function show(Book $book)
